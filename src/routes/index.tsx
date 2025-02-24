@@ -13,9 +13,9 @@ export const Routes=()=>{
     return <Router >
         <Route path="/" Component={Home}/>
         <Route path="/produtos" Component={Products}/>
-        <Route path="/carrinho" Component={Cart}/>
+        <Route path="/meu-carrinho" Component={Cart}/>
         <Route path="/minha-conta" Component={Conta}/>
         <Route path="/cadastro" Component={Register}/>
-        <Route path="/login" Component={Login}/>
+        <Route path="/entrar" Component={Login}/>
     </Router>
 }

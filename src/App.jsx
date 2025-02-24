@@ -1,10 +1,17 @@
 
+import { CustomProvider } from 'rsuite'
 import './App.css'
+import { Layout } from './components/Layout'
 import { Routes } from './routes'
+import { useContextUI } from './context/uicontext'
 
-function App() {
+export const App=()=>{
+  const {theme}=useContextUI()
 
-
-  return  <Routes />
+  return  <Layout>
+  <CustomProvider theme={theme}>
+    <Routes />
+  </CustomProvider>
+  </Layout>
 }
-export default App
+
