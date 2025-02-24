@@ -13,6 +13,7 @@ main{
 @media  screen and (min-width:350px) and (max-width:950px) {
     main{
         .content{
+            padding: 20px;
             width: 100%;
         }
     }
