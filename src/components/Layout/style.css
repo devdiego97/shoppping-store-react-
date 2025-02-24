@@ -1,9 +1,19 @@
 
 main{
-    min-height: 100vh;
+    min-height: 600px;
     transition: all ease .3s;
     .content{
         width: 80%;
         margin: auto;
+    
+    }
+}
+
+
+@media  screen and (min-width:350px) and (max-width:950px) {
+    main{
+        .content{
+            width: 100%;
+        }
     }
 }

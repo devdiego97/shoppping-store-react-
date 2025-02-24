@@ -6,6 +6,7 @@ import { HStack,Text, IconButton, Toggle, VStack } from "rsuite"
 import { LinksHeader } from "../../utils/links.header"
 import ListItem from "rsuite/esm/List/ListItem"
 import { useContextUI } from "../../context/uicontext"
+import { Link } from "react-router-dom"
 
 export const Header=()=>{
     const {openMenuMobile,handleMenuMobile,theme,handleTheme}=useContextUI()
@@ -24,7 +25,7 @@ export const Header=()=>{
             </div>
             <ul className="links">
              {
-                LinksHeader.map((i)=><ListItem as='li'><a href={i.path}>{i.name}</a></ListItem>)
+                LinksHeader.map((i)=><ListItem as='li'><Link to={i.path}>{i.name}</Link></ListItem>)
              }
             </ul>
             <HStack className="handle-theme" alignItems="center">

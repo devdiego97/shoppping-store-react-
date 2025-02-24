@@ -41,6 +41,7 @@ nav{
         }
 
     nav{
+        z-index: 1;
         display: ${props=>props.state === true ? 'flex' : 'hidden'};
         position: fixed;
         width:${props=>props.state === true ? '50vw' : '0'};
