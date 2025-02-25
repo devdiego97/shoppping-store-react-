@@ -8,15 +8,13 @@ import { Register } from "../pages/Register"
 import { Login } from "../pages/Login"
 import ProductId from "../pages/ProductId"
 
-
-
 export const Routes=()=>{
+    
     return <Router >
         <Route path="/" Component={Home}/>
         <Route path="/produtos" Component={Products}/>
         <Route path="/produtos/:id/:name" Component={ProductId}/>
         <Route path="/meu-carrinho" Component={Cart}/>
-        <Route path="/minha-conta" Component={Conta}/>
         <Route path="/cadastro" Component={Register}/>
         <Route path="/entrar" Component={Login}/>
     </Router>

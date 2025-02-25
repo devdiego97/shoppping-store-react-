@@ -8,13 +8,17 @@ import ListItem from "rsuite/esm/List/ListItem"
 import { useContextUI } from "../../context/uicontext"
 import { Link } from "react-router-dom"
 
+
+
+
+
 export const Header=()=>{
     const {openMenuMobile,handleMenuMobile,theme,handleTheme}=useContextUI()
 
 
-    return <HeaderContainer state={openMenuMobile}>
+    return <HeaderContainer  state={openMenuMobile}>
         <div className="cx-logo">
-
+            <h3 style={{color:'white'}}>ShoppingWeb</h3>
         </div>
         <div className="cx-open-menu">
            <IconButton onClick={()=>handleMenuMobile(true)} appearance="primary" color="blue" icon={<MenuIcon />} />

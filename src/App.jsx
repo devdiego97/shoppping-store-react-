@@ -6,7 +6,8 @@ import { Routes } from './routes'
 import { useContextUI } from './context/uicontext'
 
 export const App=()=>{
-  const {theme}=useContextUI()
+  
+const {theme}=useContextUI()
 
   return  <Layout>
   <CustomProvider theme={theme}>

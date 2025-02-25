@@ -1,0 +1,12 @@
+
+.card{
+    transition: all ease .3s;
+    &:hover{
+        box-shadow: 0 0 12px #aaa;
+    }
+}
+
+img{
+    height:100%;
+    width:100%;
+}

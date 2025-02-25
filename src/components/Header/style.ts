@@ -7,7 +7,7 @@ export const HeaderContainer=styled.header<props>`
 display: flex;
 align-items: center;
 justify-content: space-around;
-padding: 12px;
+padding: 22px;
 background-color: #D84040;
 .cx-img{
     img{
