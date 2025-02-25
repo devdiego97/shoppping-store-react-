@@ -5,6 +5,7 @@ import { Card,Text, Col, Container, FlexboxGrid, Grid, HStack, Row, Tag, List, V
 import FlexboxGridItem from "rsuite/esm/FlexboxGrid/FlexboxGridItem"
 import { ImgBg} from "../../components/ImgBg"
 import { BgImg } from "../../components/ImgBg/style"
+import { useContextData } from "../../context/datacontext"
 
 
 
@@ -12,7 +13,7 @@ export default ()=>{
     const {name,id}=useParams()
     const productId=produtos.find(i=>i.id === parseInt(id as string))
     const [activeImg,setActiveImg]=useState<string>(productId!.cover)
-
+   const {user}=useContextData()
 
     return <div >
       
@@ -28,7 +29,7 @@ export default ()=>{
                         productId?.imgs.map(i=><div  onClick={()=>setActiveImg(i)} style={{padding:'12px',
                         width:'150px',height:'180px',border:'1px solid #aaa',background:'white',cursor:'pointer'}}>
                             <BgImg  height={145} imageUrl={i}  />
-                        </div>)
+                        </div>) 
                     }
                     </div>
                  
@@ -47,8 +48,11 @@ export default ()=>{
                 <Card.Body>
                     <Text as='p'>{productId?.about}</Text>
                     <VStack style={{margin:'9px'}}>
+          
+                      {user ? <>
                         <Text as='p'>Por</Text>
-                      <Text as ='h3'>R$ {productId?.price.toFixed(2).replace('.',',')}</Text>
+                        <Text as ='h3'>R$ {productId?.price.toFixed(2).replace('.',',')}</Text>
+                        </> :  <Text as='h4' color="red" >FAÇA LOGIN PARA VER PREÇO</Text>}
                       <Button style={{margin:'20px 0'}} block size="lg" color="blue" appearance="primary">Comprar</Button>
                     </VStack>
                 </Card.Body>

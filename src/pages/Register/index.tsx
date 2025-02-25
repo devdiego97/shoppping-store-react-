@@ -1,13 +1,10 @@
 import React, { useState } from "react"
-import { Button,Text, Container, Form, Heading, HStack, InputGroup, Input } from "rsuite"
+import { Button,Text, Container, Form, Heading, HStack, InputGroup, Input, Modal, Loader } from "rsuite"
 import EyeCloseIcon from '@rsuite/icons/EyeClose'
 import VisibleIcon from '@rsuite/icons/Visible'
-import FormGroup from "rsuite/esm/FormGroup"
 import FormControlLabel from "rsuite/esm/FormControlLabel"
 import { useFormik } from "formik";
-import Joi from "joi";
 import { userSchema } from "../../schema/user.schema"
-import { FormControl } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { useContextData } from "../../context/datacontext"
 
@@ -23,6 +20,7 @@ const validate = (values) => {
 }
 
 export const Register=()=>{
+    const [open,setOpen]=useState(false)
     const {setUser}=useContextData()
     const [visible, setVisible] = useState(false)
     const nav=useNavigate()
@@ -40,13 +38,16 @@ export const Register=()=>{
         validate,
         onSubmit: (values, { resetForm }) => {
             console.log("Dados enviados:", values);
-               setUser({
+            setOpen(true)
+          setTimeout(()=>{
+                setOpen(false)
+                setUser({
                     id:Math.floor(Math.random()* 999),
                     ...values
                 })
-                nav('produtos')
-            resetForm();
-          },
+            nav('/produtos')
+               },1900)
+          }
       })
     return <Container style={{ margin:'100px 0' }}>
         <Form fluid >
@@ -88,6 +89,14 @@ export const Register=()=>{
                 <Button type="submit" size="lg" appearance="primary"  onClick={formik.submitForm}>Cadastrar</Button>
             </HStack>
         </Form>
+        <Modal style={{marginTop:'180px'}} open={open}  closeButton={false}  >
+            <Modal.Body>
+                <HStack>
+                     <Loader size="xs"  />
+                    <Text>Aguarde,você será redirecionado....</Text>
+                </HStack>
+            </Modal.Body>
+        </Modal>
     
     </Container>
 }

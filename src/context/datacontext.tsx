@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react"
 import React from "react"
-type TUser={
+
+export type TUser={
     id:number,
     name:string,
     tel:string,
@@ -28,14 +29,16 @@ export const ContextDataProvider=({children}:Props)=>{
 
 
     useEffect(()=>{
-
-        const storageUser=localStorage.getItem('u')
+        const storageUser=localStorage.getItem('ut')
         setUser(JSON.parse(storageUser as string))
         if(user){
-            localStorage.setItem('u',JSON.stringify(user))
+            localStorage.setItem('ut',JSON.stringify(user))
         }
     },[])
     
+
+   
+
     return <contextData.Provider value={{user,setUser}}>
         {children}
     </contextData.Provider>

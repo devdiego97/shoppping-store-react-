@@ -7,6 +7,7 @@ import { LinksHeader } from "../../utils/links.header"
 import ListItem from "rsuite/esm/List/ListItem"
 import { useContextUI } from "../../context/uicontext"
 import { Link } from "react-router-dom"
+import { useContextData } from "../../context/datacontext"
 
 
 
@@ -14,7 +15,7 @@ import { Link } from "react-router-dom"
 
 export const Header=()=>{
     const {openMenuMobile,handleMenuMobile,theme,handleTheme}=useContextUI()
-
+    const {user}=useContextData()
 
     return <HeaderContainer  state={openMenuMobile}>
         <div className="cx-logo">
@@ -29,15 +30,10 @@ export const Header=()=>{
             </div>
             <ul className="links">
              {
-                LinksHeader.map((i)=><ListItem as='li'><Link to={i.path}>{i.name}</Link></ListItem>)
+               !user ? LinksHeader.filter(i=>!i.private).map((i)=><ListItem as='li'><Link to={i.path}>{i.name}</Link></ListItem>)
+              : LinksHeader.filter(i=>i.private || i.hasUser).map((i)=><ListItem as='li'><Link to={i.path}>{i.name}</Link></ListItem>)
              }
             </ul>
-            <HStack className="handle-theme" alignItems="center">
-                <Text color="cyan">Alterer o Tema</Text>
-                <HStack justifyContent="center">
-                <Toggle size="lg" onChange={()=>theme ==='light' ? handleTheme('dark') :handleTheme('light')} checkedChildren="escuro" unCheckedChildren="claro" defaultChecked />
-                </HStack>
-        </HStack>
         </nav>
         
     </HeaderContainer>

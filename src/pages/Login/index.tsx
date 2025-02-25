@@ -6,9 +6,15 @@ import FormGroup from "rsuite/esm/FormGroup"
 import FormControlLabel from "rsuite/esm/FormControlLabel"
 import { useFormik } from "formik"
 import { userSchemaLogin } from "../../schema/user.schema"
+import {TUser} from './../../context/datacontext'
+import {Navigate, useNavigate} from 'react-router-dom'
+
 
 
 const validate = (values) => {
+
+
+
   const { error } = userSchemaLogin.validate(values, { abortEarly: false });
   if (!error) return {};
 
@@ -21,7 +27,7 @@ const validate = (values) => {
 
 export const Login=()=>{
     const [visible, setVisible] = useState(false)
-
+    const navigate=useNavigate()
     const handleChange = () => {
       setVisible(!visible)
     }
@@ -33,8 +39,11 @@ export const Login=()=>{
             },
             validate,
             onSubmit: (values, { resetForm }) => {
-                console.log("Dados enviados:", values);
-                resetForm(); 
+                const userStorage=JSON.parse(localStorage.getItem('ut') as string) as TUser
+                if(userStorage.email === values.email && userStorage.password === values.password){
+                  navigate('/produtos')
+                }
+                resetForm()
               },
           })
     return <Container style={{ margin:'100px 0' }}>
